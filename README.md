@@ -108,7 +108,8 @@ To try the plugin in Claude Code without installing it, start Claude Code in a s
 
 ## Release
 
-1. Raise `version` in the three manifests in `plugin/`, and run `npm run check`.
-2. Tag the commit as `v<version>`, and push the tag.
-3. When the relay changed, raise `version` in `cli/package.json`, publish it from `cli/` with `npm publish`, and raise the pin in `references/steps.md` to the same version.
-4. Submit the update to each marketplace: Anthropic's plugin submission form, the OpenAI plugin submission portal, and cursor.com/marketplace/publish. Cursor and OpenAI review each update before it is listed.
+1. After a big change, retest the agent on the six sample salon apps first, as [Retest after a big agent change](https://github.com/BeautyRouter/docs/blob/main/evals/README.md#retest-after-a-big-agent-change) in the docs repository says. A failure on any app blocks the release.
+2. Raise `version` in the three manifests in `plugin/`, and run `npm run check`.
+3. Tag the commit as `v<version>`, and push the tag.
+4. When the relay changed, raise `version` in `cli/package.json`, publish it from `cli/` with `npm publish`, and raise the pin in `references/steps.md` to the same version.
+5. Submit the update to each marketplace: Anthropic's plugin submission form, the OpenAI plugin submission portal, and cursor.com/marketplace/publish. Cursor and OpenAI review each update before it is listed.
