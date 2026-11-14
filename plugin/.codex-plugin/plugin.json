@@ -1,0 +1,29 @@
+{
+  "name": "beauty-router",
+  "version": "0.1.0",
+  "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design.",
+  "author": {
+    "name": "Beauty Router",
+    "email": "dev@beautyrouter.com",
+    "url": "https://beautyrouter.com"
+  },
+  "homepage": "https://docs.beautyrouter.com/agent-skills/",
+  "repository": "https://github.com/BeautyRouter/integration-agent",
+  "keywords": ["beauty-router", "salon", "marketplace", "integration"],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json",
+  "interface": {
+    "displayName": "Beauty Router",
+    "shortDescription": "Integrate Beauty Router",
+    "longDescription": "Reads your salon app, proposes where the Beauty Router marketplace, verification, orders, and catalog go, and builds them one step at a time. After each step it runs your app, tests the new part in a browser, matches it to your design, and opens it for you to try. It ends with a commit or a pull request in your project's style.",
+    "developerName": "Beauty Router",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://beautyrouter.com",
+    "supportURL": "https://docs.beautyrouter.com/support/",
+    "termsOfServiceURL": "https://beautyrouter.com/terms/",
+    "defaultPrompt": ["Integrate Beauty Router into this app"],
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

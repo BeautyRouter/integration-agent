@@ -1,0 +1,17 @@
+{
+  "name": "beauty-router",
+  "owner": {
+    "name": "Beauty Router",
+    "email": "dev@beautyrouter.com"
+  },
+  "metadata": {
+    "description": "The Beauty Router integration agent for salon apps."
+  },
+  "plugins": [
+    {
+      "name": "beauty-router",
+      "source": "./plugin",
+      "description": "Integrates Beauty Router into a salon app step by step, tested in a browser after each step."
+    }
+  ]
+}

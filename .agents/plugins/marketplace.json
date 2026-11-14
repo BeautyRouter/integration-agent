@@ -1,0 +1,20 @@
+{
+  "name": "beauty-router",
+  "interface": {
+    "displayName": "Beauty Router"
+  },
+  "plugins": [
+    {
+      "name": "beauty-router",
+      "source": {
+        "source": "local",
+        "path": "./plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

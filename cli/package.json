@@ -1,0 +1,30 @@
+{
+  "name": "@beautyrouter/cli",
+  "version": "0.1.0",
+  "description": "Beauty Router's command line. `br listen` forwards a sandbox salon app's webhook events to a local URL.",
+  "license": "MIT",
+  "homepage": "https://docs.beautyrouter.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeautyRouter/integration-agent.git",
+    "directory": "cli"
+  },
+  "type": "module",
+  "bin": {
+    "br": "dist/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.14"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "beauty-router-integration-agent",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "sync": "node --experimental-strip-types scripts/sync.ts",
+    "check": "node --experimental-strip-types scripts/sync.ts --check && npm --prefix cli exec -- tsc --noEmit -p cli/tsconfig.json"
+  }
+}

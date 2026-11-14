@@ -1,0 +1,14 @@
+{
+  "name": "beauty-router",
+  "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Beauty Router",
+    "email": "dev@beautyrouter.com"
+  },
+  "homepage": "https://docs.beautyrouter.com/agent-skills/",
+  "repository": "https://github.com/BeautyRouter/integration-agent",
+  "license": "MIT",
+  "keywords": ["beauty-router", "salon", "marketplace", "integration"],
+  "logo": "./assets/logo.svg"
+}
