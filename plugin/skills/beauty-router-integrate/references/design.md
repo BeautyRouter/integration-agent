@@ -8,8 +8,8 @@ Beauty Router's screens run in a frame, so the app's CSS does not reach them. Tw
 ## The design keys
 
 1. Read the app's theme: its CSS variables, its theme file or Tailwind config, or the colors and fonts its components use.
-2. Map each value to the design key with the same role. The MCP server's design tools list the keys and the formats they take. Primary is the app's main action color, text is its body text, and background is its page background.
-3. Save the design through the MCP server, and publish that version to the sandbox. The version goes in `.beauty-router/integration.json`.
+2. Map each value to the design key with the same role. `list_design_keys` lists the keys and the formats they take. Primary is the app's main action color, text is its body text, and background is its page background.
+3. Save the design with `save_design`, and publish that version to the sandbox with `publish_design`. The version goes in `.beauty-router/integration.json`.
 
 ## The comparison loop
 
@@ -24,7 +24,7 @@ Use one only when a difference cannot be fixed with the keys. The rules, which B
 
 - It targets the frame's `br-` classes.
 - No `@import`.
-- `url()` only to font and image files you upload through the MCP server.
+- `url()` only to font and image files you upload: `create_design_file_upload` gives each file an upload URL and the URL to use in `url()`. Upload the file with `curl --upload-file`, and never read it into the conversation.
 - It stays under the size limit.
 
 When an upload is refused, the response says which rule broke and why. Fix the file. Do not work around the rule.
@@ -33,4 +33,4 @@ Never hide, cover, or shrink the "Powered by Beauty Router" mark, the terms link
 
 ## Production
 
-The design stays in the sandbox until Finish. There, with the user's yes, ask the user to sign in to the MCP server's production environment, and publish the same sandbox version to production. Tell the user that it applies at once, and that Beauty Router reviews it within 24 hours and may change or revert it, with an email to the team.
+The design stays in the sandbox until Finish. There, with the user's yes, ask the user to sign in to the MCP server's production environment, and publish the same sandbox version to production with `publish_design`. Tell the user that it applies at once, and that Beauty Router reviews it within 24 hours and may change or revert it, with an email to the team.

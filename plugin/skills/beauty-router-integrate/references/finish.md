@@ -2,7 +2,7 @@
 
 ## 1. The project's commands
 
-Read the integration status through the MCP server, and fix each open item. Then propose the commands the project runs before a commit: code generation, migrations, lint, type checks, tests, and the build. Take them from the package scripts, the Makefile, the CI config, and the contributing guide. Ask the user whether any other command is needed. Run them all, and fix what fails.
+Read the integration status with `get_integration_status`, and fix each open item. Then propose the commands the project runs before a commit: code generation, migrations, lint, type checks, tests, and the build. Take them from the package scripts, the Makefile, the CI config, and the contributing guide. Ask the user whether any other command is needed. Run them all, and fix what fails.
 
 ## 2. Commit or pull request
 

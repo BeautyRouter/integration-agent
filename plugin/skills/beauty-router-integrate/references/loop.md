@@ -29,7 +29,7 @@ Run the app as the scan found, and sign in with the test login. Give `br-tester`
 - `br-apptoken` appears nowhere in the built frontend or in the mobile app.
 - The project's own linters, type checks, and tests pass.
 
-Then read the integration status through the MCP server: missing settings, skipped emails, `origin_not_allowed` refusals, errors, and webhook deliveries. Treat each new item as a failed check.
+Then read the integration status with `get_integration_status`: missing settings, skipped emails, `origin_not_allowed` refusals, errors, and webhook deliveries. Treat each new item as a failed check.
 
 When a check fails, send `br-builder` the failure and the evidence, then test again. Repeat until every check passes. When the same failure comes back three times, stop and tell the user what you tried.
 

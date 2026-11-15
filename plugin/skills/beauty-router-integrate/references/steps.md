@@ -17,7 +17,7 @@ Build:
 
 The server reads the sandbox app token from `BEAUTY_ROUTER_APP_TOKEN`, which the user gave in step 0, in the way the app reads its other secrets.
 
-Through the MCP server: add the app's local origin, such as `http://localhost:3000`.
+Through the MCP server: add the app's local origin, such as `http://localhost:3000`, with `update_origins`.
 
 Check that a login with the test user returns a user token, and that a request that names another user is refused.
 
@@ -35,9 +35,9 @@ Build:
 
 Through the MCP server:
 
-- Set `marketplaceUrl` to the marketplace page.
-- Set the test user's company to `prequalified`, so prices show.
-- Add a test card to the company.
+- Set `marketplaceUrl` to the marketplace page with `update_url_templates`.
+- Set the test user's company to `prequalified` with `set_company_verification_status`, so prices show.
+- Add a test card to the company with `add_test_card`.
 
 The user tries: open the marketplace from the navigation, search, open a product, add it to the cart, and open the cart.
 
@@ -56,8 +56,8 @@ Build:
 
 Through the MCP server:
 
-- Set `verificationUrl`.
-- Set the test company to `unverified`, `in_review`, `declined`, and back to `prequalified`, and check the banner and the page in each status.
+- Set `verificationUrl` with `update_url_templates`.
+- Set the test company to `unverified`, `in_review`, `declined`, and back to `prequalified` with `set_company_verification_status`, and check the banner and the page in each status.
 
 The user tries: open verification from the settings, and see the banner.
 
@@ -76,8 +76,8 @@ Build:
 
 Through the MCP server:
 
-- Set `orderUrl`.
-- Generate a sandbox webhook secret into the ignored env file, when the app has the webhook route.
+- Set `orderUrl` with `update_url_templates`.
+- Generate a sandbox webhook secret with `generate_webhook_secret` into the ignored env file, when the app has the webhook route.
 
 Run the webhook relay in the background while you test, so the local route gets the events. Use this exact package and version, with the ignored env file, and the app's own local origin and route:
 
@@ -91,8 +91,8 @@ Check:
 
 - an order from the checkout reaches `onOrderCreated`;
 - the relay delivers `order.created` and the signature check passes;
-- a status change you trigger through the MCP server reaches the app;
-- the order email in the sandbox email list opens the app's order page.
+- a status change you trigger with `trigger_event` reaches the app;
+- the order email in `list_sandbox_emails` opens the app's order page.
 
 The user tries: place an order with the test card, see it in the app, and open it.
 
@@ -110,7 +110,7 @@ Build, from the decisions:
 - **Catalog picker:** when a salon adds a product, search the catalog through the app's server, because search takes the app token. The route requires the signed-in session, like every route that spends the app token.
 - **Catalog sync:** only when the app lists catalog products itself. Download the full file, then the daily delta, in a job like the app's other jobs.
 
-Through the MCP server: set `productUrl`.
+Through the MCP server: set `productUrl` with `update_url_templates`.
 
 The user tries: open a matched product, and reorder from low stock.
 

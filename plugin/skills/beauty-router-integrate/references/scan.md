@@ -53,5 +53,5 @@ Fast mode shows all of them on one screen, with the defaults, and asks the user 
 
 1. Read the app's colors, font, and corner radius from its theme.
 2. Save them as a sandbox design through the MCP server ([design.md](design.md)).
-3. Ask the MCP server for a preview link, and open it in the user's browser as [loop.md](loop.md#5-hand-over) says. It shows the real marketplace with a verified demo company and prices, in the app's colors, before any code changes.
+3. Get a preview link with `create_preview_link`, and open it in the user's browser as [loop.md](loop.md#5-hand-over) says. It shows the real marketplace with a verified demo company and prices, in the app's colors, before any code changes.
 4. Ask the user to look at it while you start step 1.

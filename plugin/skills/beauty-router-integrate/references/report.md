@@ -15,6 +15,6 @@ Show the exact text. Then say, in your own words:
 
 > Sending this report helps Beauty Router fix what this run hit. It is stored with your salon app, so the next time you run this agent, for an update or a new feature, it starts from this report and asks you less.
 
-Send it through the MCP server only after the user says yes. When the user says no, send nothing.
+Send it with `send_report` only after the user says yes. When the user says no, send nothing.
 
 Then thank the user, and name what to try first in production once the go-live list is done.

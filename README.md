@@ -23,7 +23,7 @@ Your code stays on your machine, and with your coding agent's model provider. Th
 
 - the settings the agent changes in your sandbox app, such as origins and URL templates;
 - the sandbox actions it runs, such as setting a test company's verification status;
-- the design it saves for your app's embedded screens, and, only after you say yes at the end, the same design published to production;
+- the design it saves for your app's embedded screens, with your app's own font and image files that the design uses, and, only after you say yes at the end, the same design published to production;
 - the report at the end, only after you read it and say yes.
 
 The agent works in the sandbox. Its one production step is that design publish, after you sign in to the MCP server's production environment. It never asks for or uses a live app token or a live webhook secret. The other production steps are yours, from the go-live list.
@@ -94,7 +94,7 @@ The agent keeps its decisions and progress in `.beauty-router/integration.json` 
 
 ## Change it
 
-Edit the entry skill and the agents in `plugin/`. The six Beauty Router skills, the logo, and `codex-agents/` are generated, so do not edit them here. The skills' source is `public/skills/` in the [docs repository](https://github.com/BeautyRouter/docs).
+Edit the entry skill and the agents in `plugin/`. The skill calls the MCP tools by name. `McpServerTests` in the [API repository](https://github.com/BeautyRouter/api) lists every tool the server offers, so a tool renamed or removed there changes the skill too. The six Beauty Router skills, the logo, and `codex-agents/` are generated, so do not edit them here. The skills' source is `public/skills/` in the [docs repository](https://github.com/BeautyRouter/docs).
 
 After a change, run the sync with Node 22.6 or later, with the docs repository next to this one, or pass its path with `--docs`:
 
