@@ -1,7 +1,7 @@
 {
   "name": "beauty-router",
   "displayName": "Beauty Router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design.",
   "author": {
     "name": "Beauty Router",

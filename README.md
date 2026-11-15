@@ -23,10 +23,10 @@ Your code stays on your machine, and with your coding agent's model provider. Th
 
 - the settings the agent changes in your sandbox app, such as origins and URL templates;
 - the sandbox actions it runs, such as setting a test company's verification status;
-- the design it saves for your app's embedded screens;
+- the design it saves for your app's embedded screens, and, only after you say yes at the end, the same design published to production;
 - the report at the end, only after you read it and say yes.
 
-The agent works in the sandbox only. It never asks for or uses a live app token or a live webhook secret. The production steps are yours, from the go-live list.
+The agent works in the sandbox. Its one production step is that design publish, after you sign in to the MCP server's production environment. It never asks for or uses a live app token or a live webhook secret. The other production steps are yours, from the go-live list.
 
 ## Review it before you run it
 
@@ -39,7 +39,7 @@ The agent reads and changes your code, and runs commands in your project. Read t
 Claude Code:
 
 ```bash
-claude plugin marketplace add BeautyRouter/integration-agent@v0.1.0
+claude plugin marketplace add BeautyRouter/integration-agent@v0.1.1
 ```
 
 ```bash
@@ -49,7 +49,7 @@ claude plugin install beauty-router@beauty-router
 Codex:
 
 ```bash
-codex plugin marketplace add BeautyRouter/integration-agent --ref v0.1.0
+codex plugin marketplace add BeautyRouter/integration-agent --ref v0.1.1
 ```
 
 Then install Beauty Router from the Plugins Directory, and restart Codex.
@@ -63,7 +63,7 @@ Cursor: install Beauty Router from the Cursor Marketplace, where Cursor reviews 
 Clone this repository at a tag, read it, and run the install script from it:
 
 ```bash
-git clone --branch v0.1.0 https://github.com/BeautyRouter/integration-agent.git beauty-router-integration-agent
+git clone --branch v0.1.1 https://github.com/BeautyRouter/integration-agent.git beauty-router-integration-agent
 ```
 
 ```bash
