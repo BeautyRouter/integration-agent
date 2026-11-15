@@ -1,6 +1,6 @@
 {
   "name": "beauty-router",
-  "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design. Sets up the sandbox and, when you say yes, production.",
+  "description": "Integrates Beauty Router into your salon software step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design. Sets up the sandbox and, when you say yes, production.",
   "version": "0.2.0",
   "author": {
     "name": "Beauty Router",

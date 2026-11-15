@@ -1,7 +1,7 @@
 {
   "name": "@beautyrouter/cli",
   "version": "0.1.0",
-  "description": "Beauty Router's command line. `br listen` forwards a sandbox salon app's webhook events to a local URL.",
+  "description": "Beauty Router's command line. `br listen` forwards a sandbox app's webhook events to a local URL.",
   "license": "MIT",
   "homepage": "https://docs.beautyrouter.com/",
   "repository": {

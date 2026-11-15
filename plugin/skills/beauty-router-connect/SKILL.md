@@ -1,11 +1,11 @@
 ---
 name: beauty-router-connect
-description: Connect a salon app to the Beauty Router API. Use for app tokens, user tokens, POST /v1/login, logout, sandbox and production, salon app admin setup, allowed IPs, firewall hosts, token rotation, error handling, IDs, money, timestamps, paging, partial updates, and a review of a whole integration against the Beauty Router implementation guidelines.
+description: Connect salon software to the Beauty Router API. Use for app tokens, user tokens, POST /v1/login, logout, sandbox and production, salon software admin setup, allowed IPs, firewall hosts, token rotation, error handling, IDs, money, timestamps, paging, partial updates, and a review of a whole integration against the Beauty Router implementation guidelines.
 ---
 
 # Beauty Router: connect
 
-This skill covers what every Beauty Router integration needs: tokens, login, environments, setup, errors, and the API conventions. A salon app is the software you connect. Each salon location is its own company in Beauty Router.
+This skill covers what every Beauty Router integration needs: tokens, login, environments, setup, errors, and the API conventions. Salon software is the software you connect. Each salon location is its own company in Beauty Router.
 
 For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-router-companies`, `beauty-router-catalog`, and `beauty-router-webhooks`.
 
@@ -13,7 +13,7 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 
 ### Tokens
 
-- The app token stays on your server. Never put it in browser or mobile code, and never let it leave your security perimeter. Anyone who has it can log in as any user of your salon app and place orders for any company in your client base that has already added a payment card.
+- The app token stays on your server. Never put it in browser or mobile code, and never let it leave your security perimeter. Anyone who has it can log in as any user of your salon software and place orders for any company in your client base that has already added a payment card.
 - Take the user and the salon location for `POST /v1/login` from your own session, never from what the browser sends, because the app token can log in any user.
 - The user token can go to your frontend. It acts for one user only and lasts 24 hours.
 - Both environments use one API base URL, `https://api.beautyrouter.com/v1`. The token decides the environment: a sandbox token works in the sandbox, and a live token in production.
@@ -31,9 +31,9 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 - Send only an email the user has verified. If emails must be unique inside a company, check that yourself.
 - Every login sends `canOrder` and `canManageCompany`, including when the token expires. A login without either fails with `validation_failed`. Each login sets both, so the latest value wins.
 - Keep `canManageCompany` `true` for at least one user of each company. Only those users get the company emails.
-- Beauty Router has no roles. Your salon app decides who gets which value.
+- Beauty Router has no roles. Your salon software decides who gets which value.
 - A login fails with status `400` and `field` set to `email` when the address cannot receive mail: `email_invalid_format`, `email_domain_not_found`, or `email_mailbox_not_found`. Ask the user to check the email or to give another one.
-- A login can succeed with a `warnings` list: `email_mailbox_full` or `email_temporary_address`. If your salon app accepts such an address, it must handle users who do not receive the emails they expect. A warning comes only with the login that checked the email.
+- A login can succeed with a `warnings` list: `email_mailbox_full` or `email_temporary_address`. If your salon software accepts such an address, it must handle users who do not receive the emails they expect. A warning comes only with the login that checked the email.
 - In the sandbox, addresses at `example.com` skip the email check.
 
 ### Errors
@@ -41,7 +41,7 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 - Match on `code`, never on `message`. `message` can change.
 - `not_found` also covers an object of another company, so check that the user token belongs to the right company.
 - `rate_limit_exceeded`: wait a moment and try again, with a longer wait after each failure.
-- `internal_error`: try again later. If it keeps happening, send the request ID from the salon app admin area to dev@beautyrouter.com.
+- `internal_error`: try again later. If it keeps happening, send the request ID from the salon software admin area to dev@beautyrouter.com.
 - `ip_not_allowed`: the token stays active. Add the address or its range in the admin area, or send the request from an allowed server.
 - `origin_not_allowed`: add the origin in the admin area of this environment. A browser may report this as a CORS error instead.
 - `company_blocked`: write to dev@beautyrouter.com.
@@ -63,7 +63,7 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 
 ### Set up
 
-1. Book a technical call at https://beautyrouter.com/contacts/. There is no self-serve app registration. Beauty Router creates your salon app and gives you access to the salon app admin area.
+1. Book a technical call at https://beautyrouter.com/contacts/. There is no self-serve app registration. Beauty Router registers your salon software and gives you access to the salon software admin area.
 2. Build and test against the sandbox. Each environment has its own admin area, with its own app tokens, origins, and settings.
 3. In the admin area, generate an app token and add at least one origin. Set your webhook URL, generate a webhook secret, and set your app's name and all four URL templates: `orderUrl`, `productUrl`, `verificationUrl`, and `marketplaceUrl`.
 4. Until those are set, login fails with `app_setup_incomplete`, and `missing` lists what to set.
@@ -91,7 +91,7 @@ The response has `userToken`, `expiresAt`, `company.id`, `company.verificationSt
 
 ### Log out a user
 
-Call `POST /v1/logout` with the user token, from your frontend or your server, when the user logs out of your salon app. The response is `204` with no body. The user's other tokens keep working.
+Call `POST /v1/logout` with the user token, from your frontend or your server, when the user logs out of your salon software. The response is `204` with no body. The user's other tokens keep working.
 
 ### Limit where app tokens work
 
@@ -107,7 +107,7 @@ User tokens stay valid when the app token that created them expires. If a token 
 
 ### Go live
 
-Set up your salon app in the production admin area, and switch the app token and the webhook secret to production. The API base URL stays the same. Repeat the sandbox setup there, because a change in the sandbox does not reach production.
+Set up your salon software in the production admin area, and switch the app token and the webhook secret to production. The API base URL stays the same. Repeat the sandbox setup there, because a change in the sandbox does not reach production.
 
 ### Find integration errors
 

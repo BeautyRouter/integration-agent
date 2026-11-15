@@ -1,6 +1,6 @@
 # Beauty Router integration agent
 
-An agent that integrates [Beauty Router](https://docs.beautyrouter.com/) into a salon app. It runs in your own coding agent: Claude Code, Codex, or Cursor. It:
+An agent that integrates [Beauty Router](https://docs.beautyrouter.com/) into your salon software. It runs in your own coding agent: Claude Code, Codex, or Cursor. It:
 
 1. reads your app and proposes where each part of Beauty Router goes;
 2. builds the integration one step at a time: login, the marketplace, verification, orders, and the catalog with product matching;
@@ -12,9 +12,9 @@ It has two modes. **Fast** asks only what it cannot find in your code. **Guided*
 
 ## What you need
 
-- A sandbox salon app in Beauty Router, and your account in its sandbox admin area. You cannot register an app yourself: Beauty Router support registers it and invites your team. If your team has no app yet, write to info@beautyrouter.com.
+- A sandbox app for your salon software in Beauty Router, and your account in its sandbox admin area. You cannot register an app yourself: Beauty Router support registers it and invites your team. If your team has no app yet, write to info@beautyrouter.com.
 - A sandbox app token, which you generate in the sandbox admin area and add to your local env file yourself, and a sandbox webhook secret, when the agent builds the webhook route.
-- For production: your production salon app, and your account in its production admin area. Beauty Router creates the production app after a technical call with your team.
+- For production: the production app for your salon software, and your account in its production admin area. Beauty Router creates the production app after a technical call with your team.
 - Your coding agent connected to the Beauty Router MCP server, `https://mcp.beautyrouter.com/mcp`. The agent asks you to sign in to it with your sandbox account, and at the end with your production account, which asks for MFA.
 - Node.js 22 or later, for the webhook relay `@beautyrouter/cli`, which the agent runs while it tests orders.
 
@@ -106,11 +106,11 @@ npm run sync
 
 `npm run check` writes nothing, and fails when a generated file is out of date, when the three manifests disagree on the version or the MCP server URL, or when the relay CLI in `cli/` has a type error. Run `npm install --prefix cli` once, and the check before each commit.
 
-To try the plugin in Claude Code without installing it, start Claude Code in a salon app's project with `claude --plugin-dir <this repository>/plugin`. `claude plugin validate ./plugin` and `claude plugin validate .` check the plugin and the marketplace.
+To try the plugin in Claude Code without installing it, start Claude Code in your salon software's project with `claude --plugin-dir <this repository>/plugin`. `claude plugin validate ./plugin` and `claude plugin validate .` check the plugin and the marketplace.
 
 ## Release
 
-1. After a big change, retest the agent on the six sample salon apps first, as [Retest after a big agent change](https://github.com/BeautyRouter/docs/blob/main/evals/README.md#retest-after-a-big-agent-change) in the docs repository says. A failure on any app blocks the release.
+1. After a big change, retest the agent on the six sample apps first, as [Retest after a big agent change](https://github.com/BeautyRouter/docs/blob/main/evals/README.md#retest-after-a-big-agent-change) in the docs repository says. A failure on any app blocks the release.
 2. Raise `version` in the three manifests in `plugin/`, and run `npm run check`.
 3. Tag the commit as `v<version>`, and push the tag.
 4. When the relay changed, raise `version` in `cli/package.json`, publish it from `cli/` with `npm publish`, and raise the pin in `references/steps.md` to the same version.

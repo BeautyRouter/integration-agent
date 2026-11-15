@@ -1,11 +1,11 @@
 ---
 name: beauty-router-embed
-description: Embed Beauty Router's interface in a salon app with the JavaScript library. Use for BeautyRouter.init, getUserToken, onOrderCreated, any show function such as showMarketplace, showCart, showCheckout, showOrder, or showVerification, origins, Content Security Policy, framing, web views, and the Powered by Beauty Router mark.
+description: Embed Beauty Router's interface in salon software with the JavaScript library. Use for BeautyRouter.init, getUserToken, onOrderCreated, any show function such as showMarketplace, showCart, showCheckout, showOrder, or showVerification, origins, Content Security Policy, framing, web views, and the Powered by Beauty Router mark.
 ---
 
 # Beauty Router: embed
 
-This skill covers the JavaScript library that shows Beauty Router's interface inside your salon app. You decide where each part appears, and Beauty Router runs the catalog, payments, sales tax, and order routing behind it.
+This skill covers the JavaScript library that shows Beauty Router's interface inside your salon software. You decide where each part appears, and Beauty Router runs the catalog, payments, sales tax, and order routing behind it.
 
 Logging in a user is in `beauty-router-connect`. Building your own New order page is in `beauty-router-orders`.
 
@@ -15,9 +15,9 @@ Logging in a user is in `beauty-router-connect`. Building your own New order pag
 
 - The library runs on web pages. In a mobile app, open such a page in a web view. Native components are not available yet.
 - Load the library from `https://js.beautyrouter.com/v1/beauty-router.js` in both environments. It takes the environment from the user token.
-- Only origins registered for your salon app can embed the interface. Add each origin in the salon app admin area. Each one must use HTTPS. In the sandbox you can also add `http://localhost` with a port. Each environment has its own origins.
+- Only origins registered for your salon software can embed the interface. Add each origin in the salon software admin area. Each one must use HTTPS. In the sandbox you can also add `http://localhost` with a port. Each environment has its own origins.
 - A request from an origin that is not registered fails with `origin_not_allowed`. A browser may report this as a CORS error instead.
-- Beauty Router's frame sends `frame-ancestors` with your registered origins, and the browser checks every page above the frame. When your salon app runs inside another site's frame, register that site's origin too.
+- Beauty Router's frame sends `frame-ancestors` with your registered origins, and the browser checks every page above the frame. When your salon software runs inside another site's frame, register that site's origin too.
 
 ### Content Security Policy
 
@@ -75,7 +75,7 @@ Logging in a user is in `beauty-router-connect`. Building your own New order pag
 
 ## How to do it
 
-1. Add your origins in the salon app admin area of each environment.
+1. Add your origins in the salon software admin area of each environment.
 2. Add a server endpoint, here `/beauty-router/login`, that logs in the current user with `POST /v1/login` and returns the user token.
 3. Add the script to your page.
 
@@ -104,7 +104,7 @@ Logging in a user is in `beauty-router-connect`. Building your own New order pag
 
 - `showMarketplace(element)`: the main page of the marketplace.
 - `showCart(element)`: the cart, grouped by brand or distributor. It opens the checkout in the same element.
-- `showCheckout(element, { lines })`: a checkout for a list of lines, apart from the cart. Use it when your salon app builds the list on its own screen. Each line has `productId`, `quantity`, and an optional `supplierId`. Without a `supplierId`, Beauty Router picks the best offer.
+- `showCheckout(element, { lines })`: a checkout for a list of lines, apart from the cart. Use it when your salon software builds the list on its own screen. Each line has `productId`, `quantity`, and an optional `supplierId`. Without a `supplierId`, Beauty Router picks the best offer.
 - `showFavorites(element)`: the user's favorite products.
 - `showOrders(element)`: order history, with all the company's orders and drafts.
 - `showOrder(element, orderId)`: one order, with its actions.
@@ -120,7 +120,7 @@ The product ID comes from the catalog or from a product match.
 
 ### Custom design
 
-Beauty Router can create a design for your salon app, and you select it in the salon app admin area. It applies to every embedded interface session, so your code does not change.
+Beauty Router can create a design for your salon software, and you select it in the salon software admin area. It applies to every embedded interface session, so your code does not change.
 
 ## Check against the guidelines
 

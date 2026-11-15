@@ -5,7 +5,7 @@ description: Receive Beauty Router webhooks on a server, and set up the emails B
 
 # Beauty Router: webhooks
 
-This skill covers the events Beauty Router sends to your server: product match updates, verification results, new orders, and order updates. It also covers the emails Beauty Router sends to your users, because they use the same setup in the salon app admin area.
+This skill covers the events Beauty Router sends to your server: product match updates, verification results, new orders, and order updates. It also covers the emails Beauty Router sends to your users, because they use the same setup in the salon software admin area.
 
 Every integration needs a webhook endpoint. Your webhook URL and a webhook secret are required before users can log in.
 
@@ -28,15 +28,15 @@ Every integration needs a webhook endpoint. Your webhook URL and a webhook secre
 
 ### URL and secrets
 
-- Your salon app has one HTTPS webhook URL, on a public address. Beauty Router does not follow redirects.
-- Set the URL in the salon app admin area, and generate a webhook secret there. The admin area shows the secret once, so store it on your server right away.
+- Your salon software has one HTTPS webhook URL, on a public address. Beauty Router does not follow redirects.
+- Set the URL in the salon software admin area, and generate a webhook secret there. The admin area shows the secret once, so store it on your server right away.
 - Each environment has its own webhook URL and secrets. Switch the webhook secret when you go live.
-- Beauty Router sends every webhook from one fixed IP address, which the salon app admin area shows on the webhook screen. A firewall that allows only listed addresses needs it. Still verify the signature, because an IP address alone does not prove the sender.
+- Beauty Router sends every webhook from one fixed IP address, which the salon software admin area shows on the webhook screen. A firewall that allows only listed addresses needs it. Still verify the signature, because an IP address alone does not prove the sender.
 - You can have up to 5 live secrets at the same time. Each one can have a lifetime, and you can revoke one. The last live secret cannot have a lifetime, and it cannot be revoked.
 
 ### Emails to salon users
 
-- Beauty Router sends the emails for you, in your app's name. Your users have no Beauty Router login, so every link opens your salon app.
+- Beauty Router sends the emails for you, in your app's name. Your users have no Beauty Router login, so every link opens your salon software.
 - Emails go to the address from the user's latest login. Order emails go to the users of the company. Company emails go only to users with `canManageCompany`. The Back in stock email goes only to the user who asked.
 - The app name and all four URL templates are required. The app name cannot contain "Beauty Router".
 - Each URL template is an HTTPS URL on one of your registered origins. Beauty Router replaces the placeholders with Beauty Router IDs: `{orderId}` only in `orderUrl`, `{productId}` only in `productUrl`, and `{companyId}` in any template.
@@ -111,7 +111,7 @@ If a secret leaks, generate a new secret and put it on your server, then revoke 
 
 ### Set up the emails
 
-1. In the salon app admin area, set your app's name. Your logo and accent color are optional.
+1. In the salon software admin area, set your app's name. Your logo and accent color are optional.
 2. Set the URL templates, and build the page each one opens. Each page signs the user in when needed, then shows the matching screen:
    - `orderUrl`, such as `https://app.example.com/orders/{orderId}`: `showOrder(element, orderId)`.
    - `productUrl`, such as `https://app.example.com/marketplace/products/{productId}`: `showProductDetails(element, productId, { marketplaceFeatures: true })`.

@@ -5,13 +5,13 @@
     "email": "dev@beautyrouter.com"
   },
   "metadata": {
-    "description": "The Beauty Router integration agent for salon apps."
+    "description": "The Beauty Router integration agent for salon software."
   },
   "plugins": [
     {
       "name": "beauty-router",
       "source": "./plugin",
-      "description": "Integrates Beauty Router into a salon app step by step, tested in a browser after each step."
+      "description": "Integrates Beauty Router into your salon software step by step, tested in a browser after each step."
     }
   ]
 }

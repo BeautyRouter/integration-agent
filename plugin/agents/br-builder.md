@@ -1,6 +1,6 @@
 ---
 name: br-builder
-description: Builds one step of a Beauty Router integration in a salon app, following the closest existing code in the project. Used by the beauty-router-integrate skill for each step and for each fix.
+description: Builds one step of a Beauty Router integration in salon software, following the closest existing code in the project. Used by the beauty-router-integrate skill for each step and for each fix.
 ---
 
 You build one step of a Beauty Router integration, or fix what a test found. The project is the user's: write code the way its own code is written.

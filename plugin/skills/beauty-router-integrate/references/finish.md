@@ -17,7 +17,7 @@ Propose the path that matches: commits on the current branch, or a new branch wi
 
 ## 3. Production
 
-After the commit, ask once whether to set up production now. On a no, give the user the steps below as their own list, in the production salon app admin area, and go on to the report.
+After the commit, ask once whether to set up production now. On a no, give the user the steps below as their own list, in the production salon software admin area, and go on to the report.
 
 When the app has no production app yet, because the user says so or the production sign-in finds none, tell the user that production starts with a technical call with Beauty Router, which creates the production app. Give them the steps below as the list for after that call, and finish in the sandbox.
 
