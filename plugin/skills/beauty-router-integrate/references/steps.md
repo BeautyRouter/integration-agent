@@ -15,7 +15,7 @@ Build:
 - Logout: `POST /v1/logout` when the user signs out, and no login for a user the app removed.
 - The Content Security Policy entries, when the app sends one.
 
-The server reads the sandbox app token from `BEAUTY_ROUTER_APP_TOKEN`, which the user gave in step 0, in the way the app reads its other secrets.
+The server reads the sandbox app token from `BEAUTY_ROUTER_APP_TOKEN`, which the user added in step 0, in the way the app reads its other secrets.
 
 Through the MCP server: add the app's local origin, such as `http://localhost:3000`, with `update_origins`.
 
@@ -74,10 +74,10 @@ Build:
 - When the app keeps its own copy of orders or matches products: the webhook route, which reads the raw body, checks the signature, responds `2xx` at once, skips an event it already handled, and keeps the newer `updatedAt`. Store the orders in the app's database, as the app stores its other records.
 - Questions about an order, a payment, a refund, or a delivery go to Beauty Router's order support, not to the app's support.
 
-Through the MCP server:
+Through the MCP server: set `orderUrl`.
 
 - Set `orderUrl` with `update_url_templates`.
-- Generate a sandbox webhook secret with `generate_webhook_secret` into the ignored env file, when the app has the webhook route.
+- When the app has the webhook route, ask the user to generate a sandbox webhook secret in the sandbox admin area and add `BEAUTY_ROUTER_WEBHOOK_SECRET=<the secret>` to the ignored env file themselves. Check it with `grep -q '^BEAUTY_ROUTER_WEBHOOK_SECRET=' <the env file>`.
 
 Run the webhook relay in the background while you test, so the local route gets the events. Use this exact package and version, with the ignored env file, and the app's own local origin and route:
 

@@ -33,4 +33,4 @@ Never hide, cover, or shrink the "Powered by Beauty Router" mark, the terms link
 
 ## Production
 
-The design stays in the sandbox until Finish. There, with the user's yes, ask the user to sign in to the MCP server's production environment, and publish the same sandbox version to production with `publish_design`. Tell the user that it applies at once, and that Beauty Router reviews it within 24 hours and may change or revert it, with an email to the team.
+The design stays in the sandbox until Finish, where its publish is step 4 of the production steps in [finish.md](finish.md#3-production). With the user's yes, publish the same sandbox version to production with `publish_design`, in the production environment the user signed in to. Tell the user that it applies at once, and that Beauty Router reviews it within 24 hours and may change or revert it, with an email to the team.

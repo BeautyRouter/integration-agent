@@ -6,15 +6,16 @@ An agent that integrates [Beauty Router](https://docs.beautyrouter.com/) into a 
 2. builds the integration one step at a time: login, the marketplace, verification, orders, and the catalog with product matching;
 3. after each step, runs your app, tests the step in a browser, fixes what fails, and matches the new pages to your design;
 4. opens each finished step in your browser for you to try before the next one;
-5. ends with a commit or a pull request in your project's style, a go-live list, and a report you can send to Beauty Router.
+5. ends with a commit or a pull request in your project's style, sets up your production app when you say yes, and writes a report you can send to Beauty Router.
 
 It has two modes. **Fast** asks only what it cannot find in your code. **Guided** asks about each choice and explains what it changes.
 
 ## What you need
 
 - A sandbox salon app in Beauty Router, and your account in its sandbox admin area. You cannot register an app yourself: Beauty Router support registers it and invites your team. If your team has no app yet, write to info@beautyrouter.com.
-- A sandbox app token, which you generate in the sandbox admin area.
-- Your coding agent connected to the Beauty Router MCP server, `https://mcp.beautyrouter.com/mcp`. The agent asks you to sign in to it with that account.
+- A sandbox app token, which you generate in the sandbox admin area and add to your local env file yourself, and a sandbox webhook secret, when the agent builds the webhook route.
+- For production: your production salon app, and your account in its production admin area. Beauty Router creates the production app after a technical call with your team.
+- Your coding agent connected to the Beauty Router MCP server, `https://mcp.beautyrouter.com/mcp`. The agent asks you to sign in to it with your sandbox account, and at the end with your production account, which asks for MFA.
 - Node.js 22 or later, for the webhook relay `@beautyrouter/cli`, which the agent runs while it tests orders.
 
 ## What it sends to Beauty Router
@@ -23,10 +24,11 @@ Your code stays on your machine, and with your coding agent's model provider. Th
 
 - the settings the agent changes in your sandbox app, such as origins and URL templates;
 - the sandbox actions it runs, such as setting a test company's verification status;
-- the design it saves for your app's embedded screens, with your app's own font and image files that the design uses, and, only after you say yes at the end, the same design published to production;
+- the design it saves for your app's embedded screens, with your app's own font and image files that the design uses;
+- at the end, only after you sign in to the production environment and say yes to the values it shows: your production app's origins, URL templates, webhook URL, and email settings, and the same design published to production;
 - the report at the end, only after you read it and say yes.
 
-The agent works in the sandbox. Its one production step is that design publish, after you sign in to the MCP server's production environment. It never asks for or uses a live app token or a live webhook secret. The other production steps are yours, from the go-live list.
+The agent never sees an app token or a webhook secret, in the sandbox or in production. You generate each one in the admin area and put it into your env file or your production secret store yourself. The agent checks only that the key is there, and uses it only by running your app. Each production step you decline, or that fails, is on the list the agent gives you.
 
 ## Review it before you run it
 
@@ -39,7 +41,7 @@ The agent reads and changes your code, and runs commands in your project. Read t
 Claude Code:
 
 ```bash
-claude plugin marketplace add BeautyRouter/integration-agent@v0.1.1
+claude plugin marketplace add BeautyRouter/integration-agent@v0.2.0
 ```
 
 ```bash
@@ -49,7 +51,7 @@ claude plugin install beauty-router@beauty-router
 Codex:
 
 ```bash
-codex plugin marketplace add BeautyRouter/integration-agent --ref v0.1.1
+codex plugin marketplace add BeautyRouter/integration-agent --ref v0.2.0
 ```
 
 Then install Beauty Router from the Plugins Directory, and restart Codex.
@@ -63,7 +65,7 @@ Cursor: install Beauty Router from the Cursor Marketplace, where Cursor reviews 
 Clone this repository at a tag, read it, and run the install script from it:
 
 ```bash
-git clone --branch v0.1.1 https://github.com/BeautyRouter/integration-agent.git beauty-router-integration-agent
+git clone --branch v0.2.0 https://github.com/BeautyRouter/integration-agent.git beauty-router-integration-agent
 ```
 
 ```bash

@@ -1,7 +1,7 @@
 {
   "name": "beauty-router",
-  "version": "0.1.1",
-  "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design.",
+  "version": "0.2.0",
+  "description": "Integrates Beauty Router into a salon app step by step: login, the marketplace, verification, orders, and the product catalog, tested in a browser after each step and matched to the app's design. Sets up the sandbox and, when you say yes, production.",
   "author": {
     "name": "Beauty Router",
     "email": "dev@beautyrouter.com",
@@ -15,7 +15,7 @@
   "interface": {
     "displayName": "Beauty Router",
     "shortDescription": "Integrate Beauty Router",
-    "longDescription": "Reads your salon app, proposes where the Beauty Router marketplace, verification, orders, and catalog go, and builds them one step at a time. After each step it runs your app, tests the new part in a browser, matches it to your design, and opens it for you to try. It ends with a commit or a pull request in your project's style.",
+    "longDescription": "Reads your salon app, proposes where the Beauty Router marketplace, verification, orders, and catalog go, and builds them one step at a time. After each step it runs your app, tests the new part in a browser, matches it to your design, and opens it for you to try. It ends with a commit or a pull request in your project's style, and sets up production when you say yes.",
     "developerName": "Beauty Router",
     "category": "Productivity",
     "capabilities": ["Interactive", "Read", "Write"],

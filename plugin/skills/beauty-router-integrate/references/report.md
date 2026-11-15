@@ -4,6 +4,7 @@
 
 - the agent's version, the coding agent, and the mode;
 - each step: done or skipped, and why it was skipped;
+- each production step: done by you or left to the user, and why it was left; or that production waits for the technical call with Beauty Router;
 - the problems from the list you kept: where the docs, a skill, the MCP server, or this agent made you guess, retry, or ask, and what would have prevented it;
 - what would make the next run faster.
 
@@ -17,4 +18,4 @@ Show the exact text. Then say, in your own words:
 
 Send it with `send_report` only after the user says yes. When the user says no, send nothing.
 
-Then thank the user, and name what to try first in production once the go-live list is done.
+Then thank the user, and name what to try first in production once the production steps left to them are done.

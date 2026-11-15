@@ -1,6 +1,6 @@
 # Step 0: scan and preview
 
-This step changes no code. It writes only the sandbox app token to the ignored env file, and `.beauty-router/integration.json` at its end.
+This step changes no code. It writes only `.beauty-router/integration.json`, at its end.
 
 ## Scan
 
@@ -22,14 +22,11 @@ Use a seed user or a documented test account when the scan found one. When it fo
 
 ## Sandbox app token
 
-Ask the user for the app's sandbox app token, in the same message as the decisions. Explain that the user generates it in the app's sandbox admin area. A team cannot register an app in Beauty Router itself: Beauty Router support registers it and invites the team, so a user whose team has no app yet writes to info@beautyrouter.com. The rest of step 0 goes on while they wait.
+In the same message as the decisions, ask the user to generate the app's sandbox app token in the sandbox admin area. A team cannot register an app in Beauty Router itself: Beauty Router support registers it and invites the team, so a user whose team has no app yet writes to info@beautyrouter.com. The rest of step 0 goes on while they wait.
 
-Name the local env file from the scan, and check that git ignores it and does not track it, as the rules say. Then offer two ways:
+Name the local env file from the scan, and check that git ignores it and does not track it, as the rules say. Then ask them to add `BEAUTY_ROUTER_APP_TOKEN=<the token>` to that file themselves, which keeps the token out of this conversation. When they paste a sandbox token here anyway, append it to the file with the shell, and never repeat it.
 
-- The user adds `BEAUTY_ROUTER_APP_TOKEN=<the token>` to that file themselves, which keeps the token out of this conversation. This is the one to recommend.
-- The user pastes it here. Append it to the file with the shell, and never repeat it.
-
-Then check it without reading it: `grep -q '^BEAUTY_ROUTER_APP_TOKEN=br-apptoken-sandbox-' <file>` must succeed. When `grep -q 'br-apptoken-live-' <file>` succeeds, a live token is in the file: tell the user to remove it from the file and revoke it, and go on only after they did.
+Then check it without reading it: `grep -q '^BEAUTY_ROUTER_APP_TOKEN=br-apptoken-sandbox-' <file>` must succeed. The development env file holds only sandbox values. When `grep -q 'br-apptoken-live-' <file>` succeeds, a live token is in it: tell the user to remove it from the file and revoke it, and go on only after they did. A live token belongs only in the file or secret store the user chooses for production at Finish.
 
 ## Decisions
 
