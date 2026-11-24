@@ -31,14 +31,15 @@ If your users check out in the embedded interface, you need only the order statu
 ### After the order
 
 - The statuses are `draft`, `pending_verification`, `payment_failed`, `placed`, `ready_to_ship`, `in_transit`, `delivered`, `delivery_failed`, and `canceled`. On a canceled order, `cancelReason` says why.
-- A `prequalified` company's order is `pending_verification`, with no charge. When verification passes, the charge runs, and the order becomes `placed` or `payment_failed`. When a company is declined, its orders close.
+- A `prequalified` company's order is `pending_verification`, with no charge. When verification passes, the charge runs, and the order becomes `placed` or `payment_failed`. An order for a brand or distributor that confirms each order itself becomes `placed` with no charge, and waits for that confirmation. When a company is declined, its orders close.
+- Some brands and distributors confirm each order themselves. Their order is `placed` with no charge, and the charge runs when they confirm it. The quote's `chargeTiming` is `after_supplier_confirmation` for them.
 - `payment_failed` means the card charge failed, or a payment is waiting for 3-D Secure. Beauty Router tries once more after 24 hours when the failure can be retried. If that fails too, or the failure cannot be retried, it cancels the order at 24 hours.
-- Only a `placed` order takes stock from the supplier. A draft, a `pending_verification` order, and a `payment_failed` order hold none, so stock can run out before they are placed.
-- Shipping is locked when the order is created. Until the order is `placed`, other amounts can still change, so keep the order up to date from `order.updated`.
+- An order takes stock from the supplier when it is charged. A draft, a `pending_verification` order, a `payment_failed` order, and a `placed` order that waits for the supplier's confirmation hold none, so stock can run out before they are charged.
+- Shipping is locked when the order is created. Other amounts can still change, so keep the order up to date from `order.updated`.
 
 ### Changing orders
 
-- A `placed` order can no longer change its delivery address. The request fails with `order_action_not_allowed`, because the brand or distributor starts preparing it right away.
+- A `placed` order can no longer change its delivery address. The request fails with `order_action_not_allowed`, because the brand or distributor may already be preparing it.
 - Cancel with `POST /v1/orders/{orderId}/cancel`. It works on `pending_verification`, `placed`, and `payment_failed`.
 - Change the address with `PUT /v1/orders/{orderId}/delivery-address`. It works on `draft` and `pending_verification`. Send the full address. `phone` is optional, and without it the order uses the company's phone. This changes the order only, not the company's default address. Beauty Router recalculates the sales tax, so `total` can change.
 - Delete a draft with `DELETE /v1/orders/{orderId}`. It works on `draft` and returns `204` with no body.

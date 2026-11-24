@@ -96,7 +96,7 @@ Each event has `id`, `type`, `createdAt`, and `data`.
 
 - `product_match.updated`: a product match was created as `matched` or changed status. `data` is the product match.
 - `company.verification_updated`: the verification status changed, or a change after verification was approved or declined. `data` has `companyId`, `verificationStatus`, and `pendingChanges`.
-- `order.created`: an order was created and its charge ran. `status` is `placed` or `payment_failed`, or `pending_verification` when the charge waits for verification. `data` is the order.
+- `order.created`: an order was created, after its charge attempt. `status` is `placed` or `payment_failed`, or `pending_verification` when the charge waits for verification. A `placed` order from a brand or distributor that confirms each order itself is not charged yet. `data` is the order.
 - `order.updated`: the status, tracking, delivery address, or other order details changed, such as `payment_failed` to `placed`. `data` is the order.
 
 `companyId` is the `company.id` that `POST /v1/login` returned for that company. The order has the same `companyId`, and `userId`, the `user.id` of the user who placed it. A draft sends no webhook. `order.created` is sent when the draft is placed.

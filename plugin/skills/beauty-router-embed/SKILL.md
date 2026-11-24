@@ -53,7 +53,7 @@ Logging in a user is in `beauty-router-connect`. Building your own New order pag
 ### Orders from the checkout
 
 - `onOrderCreated(orders)` gets an array of orders, because one checkout creates one order per brand or distributor. Each one has the same shape as an order in the API.
-- An order is `placed` when the charge succeeds, and `payment_failed` otherwise. An order from a `prequalified` company is `pending_verification`, with no charge yet. Do not treat every order in the array as paid.
+- An order is `placed` when the charge succeeds, and `payment_failed` otherwise. An order for a brand or distributor that confirms each order itself is `placed` with no charge yet. An order from a `prequalified` company is `pending_verification`, with no charge yet. Do not treat every order in the array as paid.
 - Your server also receives an `order.created` webhook for each order, so it gets the order even if the user closes the page.
 
 ### Payment and account actions
