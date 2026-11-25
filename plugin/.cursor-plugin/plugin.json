@@ -6,7 +6,7 @@
     "name": "Beauty Router",
     "email": "dev@beautyrouter.com"
   },
-  "homepage": "https://docs.beautyrouter.com/agent-skills/",
+  "homepage": "https://docs.beautyrouter.com/ai-agent/",
   "repository": "https://github.com/BeautyRouter/integration-agent",
   "license": "MIT",
   "keywords": ["beauty-router", "salon", "marketplace", "integration"],

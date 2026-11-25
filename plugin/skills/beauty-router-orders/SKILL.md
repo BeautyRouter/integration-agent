@@ -101,7 +101,7 @@ If your users check out in the embedded interface, you need only the order statu
 
 ## Check against the guidelines
 
-Before you call the work done, read https://docs.beautyrouter.com/guidelines.md and check the integration against its Inventory and reorders, and Orders and notifications sections. List each Required item the integration misses as a problem to fix, and each Recommended item it skips, with the screen or file where it belongs.
+Before you call the work done, read https://docs.beautyrouter.com/guidelines.md and check the integration against its Inventory and reorders, Neutrality, and Orders and notifications sections. List each Required item the integration misses as a problem to fix, and each Recommended item it skips, with the screen or file where it belongs.
 
 ## Read for details
 

@@ -77,7 +77,7 @@ Build:
 Through the MCP server: set `orderUrl`.
 
 - Set `orderUrl` with `update_url_templates`.
-- When the app has the webhook route, ask the user to generate a sandbox webhook secret in the sandbox admin area and add `BEAUTY_ROUTER_WEBHOOK_SECRET=<the secret>` to the ignored env file themselves. Check it with `grep -q '^BEAUTY_ROUTER_WEBHOOK_SECRET=' <the env file>`.
+- When the app has the webhook route and `grep -q '^BEAUTY_ROUTER_WEBHOOK_SECRET=' <the env file>` fails, create the sandbox webhook secret yourself. Check again that git ignores the env file and does not track it, call `generate_webhook_secret`, and append `BEAUTY_ROUTER_WEBHOOK_SECRET=<the value>` to the env file with the shell in the same step. Do not print or echo the value, and do not repeat it anywhere else. Then check the key with the same `grep`. The app's earlier secrets stay valid, so a shared test server keeps working.
 
 Run the webhook relay in the background while you test, so the local route gets the events. Use this exact package and version, with the ignored env file, and the app's own local origin and route:
 

@@ -7,7 +7,7 @@ description: Receive Beauty Router webhooks on a server, and set up the emails B
 
 This skill covers the events Beauty Router sends to your server: product match updates, verification results, new orders, and order updates. It also covers the emails Beauty Router sends to your users, because they use the same setup in the salon software admin area.
 
-Every integration needs a webhook endpoint. Your webhook URL and a webhook secret are required before users can log in.
+Whether your salon software needs a webhook endpoint is in Your webhook URL in https://docs.beautyrouter.com/webhooks.md. Beauty Router delivers events from the moment the webhook URL is set.
 
 ## Rules
 
@@ -29,7 +29,8 @@ Every integration needs a webhook endpoint. Your webhook URL and a webhook secre
 ### URL and secrets
 
 - Your salon software has one HTTPS webhook URL, on a public address. Beauty Router does not follow redirects.
-- Set the URL in the salon software admin area, and generate a webhook secret there. The admin area shows the secret once, so store it on your server right away.
+- Generate a webhook secret first, then set the URL in the salon software admin area, because the admin area saves a webhook URL only once the app has a live secret. The admin area shows the secret once, so store it on your server right away. `br secrets create --webhook-secret <target>` creates one too, and writes it only to a git-ignored env file or to a secret store's command. In the sandbox, a coding agent creates the secret with the MCP server's `generate_webhook_secret` tool, which returns it once: append it straight to the project's git-ignored env file, and never print it or put it in code or a message. A production secret never comes from the MCP server.
+- To test on your machine, run the webhook relay in the sandbox: `br listen --dotenv <the env file> --forward-to <a localhost URL of the webhook route>`. Each copy has the exact signed body and headers, and gets one attempt.
 - Each environment has its own webhook URL and secrets. Switch the webhook secret when you go live.
 - Beauty Router sends every webhook from one fixed IP address, which the salon software admin area shows on the webhook screen. A firewall that allows only listed addresses needs it. Still verify the signature, because an IP address alone does not prove the sender.
 - You can have up to 5 live secrets at the same time. Each one can have a lifetime, and you can revoke one. The last live secret cannot have a lifetime, and it cannot be revoked.
@@ -38,7 +39,7 @@ Every integration needs a webhook endpoint. Your webhook URL and a webhook secre
 
 - Beauty Router sends the emails for you, in your app's name. Your users have no Beauty Router login, so every link opens your salon software.
 - Emails go to the address from the user's latest login. Order emails go to the users of the company. Company emails go only to users with `canManageCompany`. The Back in stock email goes only to the user who asked.
-- The app name and all four URL templates are required. The app name cannot contain "Beauty Router".
+- The app name and the URL templates are required settings, as Get access in https://docs.beautyrouter.com/support.md lists. The app name cannot contain "Beauty Router".
 - Each URL template is an HTTPS URL on one of your registered origins. Beauty Router replaces the placeholders with Beauty Router IDs: `{orderId}` only in `orderUrl`, `{productId}` only in `productUrl`, and `{companyId}` in any template.
 - Replies go to Beauty Router's order support. When your users ask you about an order, a payment, a refund, or a delivery, send them there. Questions about your app stay with you.
 
@@ -103,7 +104,7 @@ Each event has `id`, `type`, `createdAt`, and `data`.
 
 ### Rotate a secret
 
-1. Generate a new secret in the admin area.
+1. Generate a new secret in the admin area, or create it with `br secrets create`.
 2. Put the new secret on your server.
 3. Limit the lifetime of the old secret, so that it expires once all your servers use the new one.
 
@@ -129,7 +130,8 @@ Read these pages for exact payloads and settings. Do not guess them.
 - Signature, events, and retries, with code for each language: https://docs.beautyrouter.com/webhooks.md
 - Every email, the URL templates, and your own domain: https://docs.beautyrouter.com/emails.md
 - Webhook failures in the admin area: https://docs.beautyrouter.com/errors.md
-- Required settings and integration errors: https://docs.beautyrouter.com/support.md
+- Required settings, the webhook relay, and integration errors: https://docs.beautyrouter.com/support.md
+- `br secrets create`: https://docs.beautyrouter.com/authentication.md
 - `order.created`: https://docs.beautyrouter.com/api/webhooks/ordercreated.md
 - `order.updated`: https://docs.beautyrouter.com/api/webhooks/orderupdated.md
 - `company.verification_updated`: https://docs.beautyrouter.com/api/webhooks/companyverificationupdated.md

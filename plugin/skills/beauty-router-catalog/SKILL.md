@@ -19,7 +19,7 @@ Prices are not here. They come from offers, in `beauty-router-orders`.
 - The files are gzip-compressed JSON Lines, with one object per line. Beauty Router generates them daily.
 - Download the full file first. After that, apply the delta every day. If you miss a day, download the full file again.
 - The delta has the products added, changed, or removed in the last 24 hours. A removed product has `removed: true`.
-- The catalog has more products than the marketplace sells at any moment, so check `availableInMarketplace` before you offer a product for sale.
+- The catalog has more products than the marketplace offers at any moment, so check `availableInMarketplace` before you offer a product for sale.
 - Products in different sizes are separate products, each with its own `id`. They share a `groupId`.
 - A non-empty `setMembers` means the product is a set. A set has `brand: null`, because each member has its own brand.
 - `GET /v1/catalog/products/{productId}` has no batch form, so use the files for lists.
@@ -85,7 +85,7 @@ Prices are not here. They come from offers, in `beauty-router-orders`.
 
 ## Check against the guidelines
 
-Before you call the work done, read https://docs.beautyrouter.com/guidelines.md and check the integration against its Inventory and reorders section. List each Required item the integration misses as a problem to fix, and each Recommended item it skips, with the screen or file where it belongs.
+Before you call the work done, read https://docs.beautyrouter.com/guidelines.md and check the integration against its Inventory and reorders, and Neutrality sections. List each Required item the integration misses as a problem to fix, and each Recommended item it skips, with the screen or file where it belongs.
 
 ## Read for details
 

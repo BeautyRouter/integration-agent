@@ -54,7 +54,7 @@ Logging in a user is in `beauty-router-connect`. Building your own New order pag
 
 - `onOrderCreated(orders)` gets an array of orders, because one checkout creates one order per brand or distributor. Each one has the same shape as an order in the API.
 - An order is `placed` when the charge succeeds, and `payment_failed` otherwise. An order for a brand or distributor that confirms each order itself is `placed` with no charge yet. An order from a `prequalified` company is `pending_verification`, with no charge yet. Do not treat every order in the array as paid.
-- Your server also receives an `order.created` webhook for each order, so it gets the order even if the user closes the page.
+- When your salon software has a webhook URL, your server also receives an `order.created` webhook for each order, so it gets the order even if the user closes the page.
 
 ### Payment and account actions
 
@@ -120,7 +120,7 @@ The product ID comes from the catalog or from a product match.
 
 ### Custom design
 
-Beauty Router can create a design for your salon software, and you select it in the salon software admin area. It applies to every embedded interface session, so your code does not change.
+Your team publishes a design for your salon software in the salon software admin area, or the integration agent publishes it through the MCP server. A sandbox publish applies at once. A production publish takes a version already published in the sandbox, applies at once, and Beauty Router reviews it within 24 hours. It applies to every embedded interface session, so your code does not change.
 
 ## Check against the guidelines
 

@@ -1,6 +1,6 @@
 ---
 name: beauty-router-connect
-description: Connect salon software to the Beauty Router API. Use for app tokens, user tokens, POST /v1/login, logout, sandbox and production, salon software admin setup, allowed IPs, firewall hosts, token rotation, error handling, IDs, money, timestamps, paging, partial updates, and a review of a whole integration against the Beauty Router implementation guidelines.
+description: Connect salon software to the Beauty Router API. Use for app tokens, br secrets create, user tokens, POST /v1/login, logout, sandbox and production, salon software admin setup, allowed IPs, firewall hosts, token rotation, error handling, IDs, money, timestamps, paging, partial updates, and a review of a whole integration against the Beauty Router implementation guidelines.
 ---
 
 # Beauty Router: connect
@@ -20,7 +20,7 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 - Each token starts with its type and its environment: `br-apptoken-live-`, `br-apptoken-sandbox-`, `br-usertoken-live-`, or `br-usertoken-sandbox-`.
 - `POST /v1/login`, `GET /v1/catalog/files`, and `GET /v1/catalog/search` take the app token. Every other endpoint takes the user token, including `GET /v1/catalog/products/{productId}`.
 - Send either token as `Authorization: Bearer <token>`.
-- The admin area shows each app token once, so store it on your server right away.
+- The admin area shows each app token once, so store it on your server right away. `br secrets create` writes a new token only to a git-ignored env file or to a secret store's command, and never prints it.
 - There is no refresh token. When a request returns `401` with `user_token_expired` or `invalid_user_token`, call `POST /v1/login` again and repeat the request.
 
 ### Login
@@ -63,10 +63,12 @@ For the other parts, use `beauty-router-embed`, `beauty-router-orders`, `beauty-
 
 ### Set up
 
-1. Book a technical call at https://beautyrouter.com/contacts/. There is no self-serve app registration. Beauty Router registers your salon software and gives you access to the salon software admin area.
+1. There is no self-serve app registration, and a team gets no access before a call with the Beauty Router team, which checks every team first. A team with no app books a call at https://beautyrouter.com/contacts/#schedule or writes to info@beautyrouter.com. After the call, Beauty Router support registers the sandbox app and invites the team to the sandbox admin area.
 2. Build and test against the sandbox. Each environment has its own admin area, with its own app tokens, origins, and settings.
-3. In the admin area, generate an app token and add at least one origin. Set your webhook URL, generate a webhook secret, and set your app's name and all four URL templates: `orderUrl`, `productUrl`, `verificationUrl`, and `marketplaceUrl`.
-4. Until those are set, login fails with `app_setup_incomplete`, and `missing` lists what to set.
+3. Generate an app token in the admin area, or create it with `br secrets create --env sandbox --app-token dotenv:<a git-ignored env file>`. Add at least one origin, and set your app's name and all four URL templates: `orderUrl`, `productUrl`, `verificationUrl`, and `marketplaceUrl`.
+4. Login needs the required settings of its environment, as Get access in https://docs.beautyrouter.com/support.md lists. Until they are set, login fails with `app_setup_incomplete`, and `missing` lists what to set.
+5. Whether you need a webhook URL and secret is in Your webhook URL in https://docs.beautyrouter.com/webhooks.md. See `beauty-router-webhooks`.
+6. To test in the sandbox, use the sandbox shortcuts (set a company's verification status, add a test card, send a webhook event, list the sandbox emails) and the webhook relay `br listen`. Both are on the support page.
 
 ### Log in a user
 
@@ -107,7 +109,7 @@ User tokens stay valid when the app token that created them expires. If a token 
 
 ### Go live
 
-Set up your salon software in the production admin area, and switch the app token and the webhook secret to production. The API base URL stays the same. Repeat the sandbox setup there, because a change in the sandbox does not reach production.
+Beauty Router creates your production app later and invites your team to the production admin area. Set up your salon software in the production admin area, and switch the app token and the webhook secret to production. The API base URL stays the same. Repeat the sandbox setup there, because a change in the sandbox does not reach production.
 
 ### Find integration errors
 
@@ -124,7 +126,8 @@ Read these pages for exact fields, codes, and steps. Do not guess them.
 - Tokens, login, and environments: https://docs.beautyrouter.com/authentication.md
 - IDs, money, timestamps, paging, and error shape: https://docs.beautyrouter.com/conventions.md
 - Every error code and how to fix it: https://docs.beautyrouter.com/errors.md
-- Admin area setup and integration errors: https://docs.beautyrouter.com/support.md
+- Admin area setup, sandbox tools, and integration errors: https://docs.beautyrouter.com/support.md
+- The integration agent and the MCP server: https://docs.beautyrouter.com/ai-agent.md
 - The steps of an integration: https://docs.beautyrouter.com/how-it-works.md
 - What each feature offers, embedded or by API: https://docs.beautyrouter.com/features.md
 - `POST /v1/login`: https://docs.beautyrouter.com/api/operations/login.md

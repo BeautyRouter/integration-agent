@@ -13,7 +13,7 @@ It has two modes. **Fast** asks only what it cannot find in your code. **Guided*
 ## What you need
 
 - A sandbox app for your salon software in Beauty Router, and your account in its sandbox admin area. You cannot register an app yourself: Beauty Router support registers it and invites your team. If your team has no app yet, write to info@beautyrouter.com.
-- A sandbox app token, which you generate in the sandbox admin area and add to your local env file yourself, and a sandbox webhook secret, when the agent builds the webhook route.
+- A sandbox app token, which you generate in the sandbox admin area and add to your local env file yourself. When the agent builds the webhook route, it creates the sandbox webhook secret itself.
 - For production: the production app for your salon software, and your account in its production admin area. Beauty Router creates the production app after a technical call with your team.
 - Your coding agent connected to the Beauty Router MCP server, `https://mcp.beautyrouter.com/mcp`. The agent asks you to sign in to it with your sandbox account, and at the end with your production account, which asks for MFA.
 - Node.js 22 or later, for the webhook relay `@beautyrouter/cli`, which the agent runs while it tests orders.
@@ -28,7 +28,7 @@ Your code stays on your machine, and with your coding agent's model provider. Th
 - at the end, only after you sign in to the production environment and say yes to the values it shows: your production app's origins, URL templates, webhook URL, and email settings, and the same design published to production;
 - the report at the end, only after you read it and say yes.
 
-The agent never sees an app token or a webhook secret, in the sandbox or in production. You generate each one in the admin area and put it into your env file or your production secret store yourself. The agent checks only that the key is there, and uses it only by running your app. Each production step you decline, or that fails, is on the list the agent gives you.
+The agent never sees an app token or a production webhook secret. You generate each one in the admin area and put it into your env file or your production secret store yourself. The one exception is the sandbox webhook secret: the agent gets it from the MCP server's `generate_webhook_secret` tool, in the sandbox only, and writes it straight to your git-ignored env file, never into code, a message, or the report. A webhook secret only checks the signature of the events Beauty Router sends, so it cannot call the API. The agent checks only that the key is there, and uses it only by running your app. Each production step you decline, or that fails, is on the list the agent gives you.
 
 ## Review it before you run it
 
